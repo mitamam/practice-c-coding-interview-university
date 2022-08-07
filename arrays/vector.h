@@ -28,7 +28,5 @@ int vector_pop(t_vector *v);
 void vector_delete(t_vector *v, const size_t index);
 void vector_remove(t_vector *v, const int item);
 int vector_find(t_vector *v, const int item);
-void vector_resize(t_vector *v);
-
 
 #endif
