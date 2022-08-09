@@ -1,10 +1,10 @@
 #include "vector.h"
 
-static void vector_resize(t_vector *v)
+static void	vector_resize(t_vector *v)
 {
-	int *newarray;
-	size_t newcapacity;
-	size_t capacity_as_item;
+	int		*newarray;
+	size_t	newcapacity;
+	size_t	capacity_as_item;
 
 	if (!v)
 		return ;
@@ -73,11 +73,11 @@ size_t vector_capacity(const t_vector *v)
 	return (v->capacity);
 }
 
-bool vector_is_empty(const t_vector *v)
+e_bool vector_is_empty(const t_vector *v)
 {
 	if (!v || v->size == 0)
-		return (true);
-	return (false);
+		return (TRUE);
+	return (FALSE);
 }
 
 int vector_at(const t_vector *v, const size_t index)
@@ -101,8 +101,8 @@ void vector_insert(t_vector *v, const size_t index, const int item)
 	if (!v || index > v->size)
 		return ;
 	vector_resize(v);
-	for (size_t i = (v->size - 1); i >= index; i--)
-		v->array[i + 1] = v->array[i];
+	for (size_t i = v->size; i > index; i--)
+		v->array[i] = v->array[i - 1];
 	v->array[index] = item;
 	v->size++;
 }
