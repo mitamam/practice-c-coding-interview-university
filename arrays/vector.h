@@ -1,11 +1,15 @@
 #ifndef VECTOR_H
-# define VECTOR_H
+#define VECTOR_H
 
-# include <stdlib.h>
-# include <stdio.h>
-# include <stdint.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <stdint.h>
 
-typedef enum e_bool { false, true } bool;
+typedef enum t_bool
+{
+	FALSE,
+	TRUE
+}			e_bool;
 
 typedef struct	s_vector
 {
@@ -19,8 +23,8 @@ void vector_destroy(t_vector *v);
 
 size_t vector_size(const t_vector *v);
 size_t vector_capacity(const t_vector *v);
-bool vector_is_empty(const t_vector *v);
-int vector_at(const t_vector *v, const size_t n);
+e_bool vector_is_empty(const t_vector *v);
+int vector_at(const t_vector *v, const size_t index);
 void vector_push(t_vector *v, const int item);
 void vector_insert(t_vector *v, const size_t index, const int item);
 void vector_prepend(t_vector *v, const int item);
@@ -29,4 +33,4 @@ void vector_delete(t_vector *v, const size_t index);
 void vector_remove(t_vector *v, const int item);
 int vector_find(t_vector *v, const int item);
 
-#endif
+#endif /* VECTOR_H */
