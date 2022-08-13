@@ -29,10 +29,12 @@ void list_push_front(t_list *list, int data);
 int list_pop_front(t_list *list);
 void list_push_back(t_list *list, int data);
 int list_pop_back(t_list *list);
-int list_front(t_list *list);
-int list_back(t_list *list);
-void list_insert(t_list *list, size_t index, int data);
-void list_erase(t_list *list, size_t index);
-int list_value_n_from_end(t_list *list, size_t n);
+int list_front(const t_list *list);
+int list_back(const t_list *list);
+void list_insert(t_list *list, const size_t index, const int data);
+void list_erase(t_list *list, const size_t index);
+int list_value_n_from_end(t_list *list, const size_t n);
+void list_reverse(t_list *list);
+void list_remove_value(t_list *list, const int data);
 
 #endif

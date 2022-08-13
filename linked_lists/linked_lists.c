@@ -68,7 +68,7 @@ int list_value_at(const t_list *list, const size_t index)
 	return (node->data);
 }
 
-void list_push_front(t_list *list, int data)
+void list_push_front(t_list *list, const int data)
 {
 	t_listnode *newnode;
 
@@ -97,7 +97,7 @@ int list_pop_front(t_list *list)
 	return (front->data);
 }
 
-void list_push_back(t_list *list, int data)
+void list_push_back(t_list *list, const int data)
 {
 	t_listnode *newnode;
 
@@ -137,21 +137,21 @@ int list_pop_back(t_list *list)
 	return (back->data);
 }
 
-int list_front(t_list *list)
+int list_front(const t_list *list)
 {
 	if (!list || !list->head)
 		return (-1);
 	return (list->head->data);
 }
 
-int list_back(t_list *list)
+int list_back(const t_list *list)
 {
 	if (!list || !list->tail)
 		return (-1);
 	return (list->tail->data);
 }
 
-void list_insert(t_list *list, size_t index, int data)
+void list_insert(t_list *list, const size_t index, const int data)
 {
 	t_listnode *insert_prev;
 	t_listnode *insert_next;
@@ -177,7 +177,7 @@ void list_insert(t_list *list, size_t index, int data)
 	list->size++;
 }
 
-void list_erase(t_list *list, size_t index)
+void list_erase(t_list *list, const size_t index)
 {
 	t_listnode *node;
 
@@ -203,16 +203,67 @@ void list_erase(t_list *list, size_t index)
 	}
 }
 
-int list_value_n_from_end(t_list *list, size_t n)
+int list_value_n_from_end(t_list *list, const size_t n)
 {
 	t_listnode *node;
 
-	if (!list || n > list->size)
+	if (!list || n == 0 || n > list->size)
 		return (-1);
 	node = list->head;
 	for (size_t i = 0; i < (list->size - n); i++)
 		node = node->next;
 	return (node->data);
+}
+
+void list_reverse(t_list *list)
+{
+	t_listnode *prev, *curr, *next;
+
+	if (!list || !list->head)
+		return ;
+	list->tail = list->head;
+	prev = NULL;
+	curr = list->head;
+	next = NULL;
+	while (curr != NULL)
+	{
+		next = curr->next;
+		curr->next = prev;
+		prev = curr;
+		curr = next;
+	}
+	list->head = prev;
+}
+
+void list_remove_value(t_list *list, const int data)
+{
+	t_listnode *prev;
+	t_listnode *curr;
+
+	if (!list || !list->head)
+		return ;
+	prev = NULL;
+	curr = list->head;
+	while (curr && curr->data != data)
+	{
+		prev = curr;
+		curr = curr->next;
+	}
+	if (!curr)
+		return ;
+	if (curr != list->head && curr != list->tail)
+	// found a node in the middle of the list with this value
+		prev->next = curr->next;
+	else if (curr == list->head)
+	// found a node in the beginning of the list with this value
+		list->head = curr->next;
+	else
+	{
+	// found a node in the end of the list with this value
+		list->tail = prev;
+		prev->next = NULL;
+	}
+	list->size--;
 }
 
 
