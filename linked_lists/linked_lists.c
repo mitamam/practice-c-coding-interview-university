@@ -49,7 +49,7 @@ size_t list_size(const t_list *list)
 	return (list->size);
 }
 
-bool list_is_empty(const t_list *list)
+t_bool list_is_empty(const t_list *list)
 {
 	if (!list || list->size == 0)
 		return (TRUE);
@@ -181,14 +181,14 @@ void list_erase(t_list *list, const size_t index)
 {
 	t_listnode *node;
 
-	if (!list || index > list->size)
+	if (!list || index > list->size || list->size == 0)
 		return ;
 	node = list->head;
 	for (size_t i = 1; i < index; i++)
 		node = node->next;
 	if (index == 0)
 		list->head = node->next;
-	else if ((index - 1) == list->size)
+	else if (index == (list->size - 1))
 	{
 		list->tail = node;
 		node->next = NULL;
@@ -254,6 +254,11 @@ void list_remove_value(t_list *list, const int data)
 	if (curr != list->head && curr != list->tail)
 	// found a node in the middle of the list with this value
 		prev->next = curr->next;
+	else if (curr == list->head && curr == list->tail)
+	{
+		list->head = NULL;
+		list->tail = NULL;
+	}
 	else if (curr == list->head)
 	// found a node in the beginning of the list with this value
 		list->head = curr->next;
