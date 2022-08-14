@@ -5,11 +5,11 @@
 #include <stdio.h>
 #include <stdint.h>
 
-typedef enum t_bool
+typedef enum e_bool
 {
 	FALSE,
 	TRUE
-}			e_bool;
+}			t_bool;
 
 typedef struct	s_vector
 {
@@ -23,7 +23,7 @@ void vector_destroy(t_vector *v);
 
 size_t vector_size(const t_vector *v);
 size_t vector_capacity(const t_vector *v);
-e_bool vector_is_empty(const t_vector *v);
+t_bool vector_is_empty(const t_vector *v);
 int vector_at(const t_vector *v, const size_t index);
 void vector_push(t_vector *v, const int item);
 void vector_insert(t_vector *v, const size_t index, const int item);

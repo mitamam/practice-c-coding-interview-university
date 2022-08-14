@@ -1,4 +1,4 @@
-#include "linked_lists.h"
+#include "linked_list.h"
 
 t_list *list_new(void)
 {
