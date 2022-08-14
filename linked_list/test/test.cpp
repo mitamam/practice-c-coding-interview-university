@@ -2,10 +2,10 @@
 #include <limits.h>
 
 extern "C" {
-	#include "../linked_lists.h"
+	#include "../linked_list.h"
 }
 
-TEST(LinkedListsTest, ListNew)
+TEST(LinkedListTest, ListNew)
 {
 	t_list *list;
 
@@ -18,7 +18,7 @@ TEST(LinkedListsTest, ListNew)
 	list_destroy(list);
 }
 
-TEST(LinkedListsTest, ListPushFront)
+TEST(LinkedListTest, ListPushFront)
 {
 	t_list *list;
 	t_list *list2;
@@ -49,7 +49,7 @@ TEST(LinkedListsTest, ListPushFront)
 	list_destroy(list2);
 }
 
-TEST(LinkedListsTest, ListPopFront)
+TEST(LinkedListTest, ListPopFront)
 {
 	t_list *list;
 
@@ -73,7 +73,7 @@ TEST(LinkedListsTest, ListPopFront)
 	list_destroy(list);
 }
 
-TEST(LinkedListsTest, ListPushBack)
+TEST(LinkedListTest, ListPushBack)
 {
 	t_list *list;
 	t_list *list2;
@@ -103,7 +103,7 @@ TEST(LinkedListsTest, ListPushBack)
 	list_destroy(list2);
 }
 
-TEST(LinkedListsTest, ListPopBack)
+TEST(LinkedListTest, ListPopBack)
 {
 	t_list *list;
 
@@ -127,7 +127,7 @@ TEST(LinkedListsTest, ListPopBack)
 	list_destroy(list);
 }
 
-TEST(LinkedListsTest, ListSize)
+TEST(LinkedListTest, ListSize)
 {
 	t_list *list;
 
@@ -150,7 +150,7 @@ TEST(LinkedListsTest, ListSize)
 	list_destroy(list);
 }
 
-TEST(LinkedListsTest, ListIsEmpty)
+TEST(LinkedListTest, ListIsEmpty)
 {
 	t_list *list;
 
@@ -167,7 +167,7 @@ TEST(LinkedListsTest, ListIsEmpty)
 	list_destroy(list);
 }
 
-TEST(LinkedListsTest, ListValueAt)
+TEST(LinkedListTest, ListValueAt)
 {
 	t_list *list;
 
@@ -188,7 +188,7 @@ TEST(LinkedListsTest, ListValueAt)
 	list_destroy(list);
 }
 
-TEST(LinkedListsTest, ListFront)
+TEST(LinkedListTest, ListFront)
 {
 	t_list *list;
 
@@ -207,7 +207,7 @@ TEST(LinkedListsTest, ListFront)
 	list_destroy(list);
 }
 
-TEST(LinkedListsTest, ListBack)
+TEST(LinkedListTest, ListBack)
 {
 	t_list *list;
 
@@ -226,7 +226,7 @@ TEST(LinkedListsTest, ListBack)
 	list_destroy(list);
 }
 
-TEST(LinkedListsTest, ListInsert)
+TEST(LinkedListTest, ListInsert)
 {
 	t_list *list;
 
@@ -254,7 +254,7 @@ TEST(LinkedListsTest, ListInsert)
 	list_destroy(list);
 }
 
-TEST(LinkedListsTest, ListErase)
+TEST(LinkedListTest, ListErase)
 {
 	t_list *list;
 
@@ -277,7 +277,7 @@ TEST(LinkedListsTest, ListErase)
 	list_destroy(list);
 }
 
-TEST(LinkedListsTest, ListValueNFromEnd)
+TEST(LinkedListTest, ListValueNFromEnd)
 {
 	t_list *list;
 
@@ -297,7 +297,7 @@ TEST(LinkedListsTest, ListValueNFromEnd)
 	list_destroy(list);
 }
 
-TEST(LinkedListsTest, ListReverse)
+TEST(LinkedListTest, ListReverse)
 {
 	t_list *list;
 
@@ -326,7 +326,7 @@ TEST(LinkedListsTest, ListReverse)
 	list_destroy(list);
 }
 
-TEST(LinkedListsTest, ListRemoveValue)
+TEST(LinkedListTest, ListRemoveValue)
 {
 	t_list *list;
 	t_list *list2;

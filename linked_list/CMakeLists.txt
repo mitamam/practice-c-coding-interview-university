@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.24)
 
-set (This LinkedLists)
+set (This LinkedList)
 
 project(${This} C CXX)
 
@@ -13,6 +13,6 @@ enable_testing()
 
 add_subdirectory(googletest)
 
-add_library(${This} linked_lists.c linked_lists.h)
+add_library(${This} linked_list.c linked_list.h)
 
 add_subdirectory(test)
