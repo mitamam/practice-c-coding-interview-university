@@ -86,15 +86,18 @@ void list_push_front(t_list *list, const int data)
 int list_pop_front(t_list *list)
 {
 	t_listnode *front;
+	int front_data;
 
 	if (!list || !list->head)
 		return (-1);
 	front = list->head;
+	front_data = list->head->data;
 	list->head = front->next;
 	if (!list->head)
 		list->tail = NULL;
 	list->size--;
-	return (front->data);
+	free(front);
+	return (front_data);
 }
 
 void list_push_back(t_list *list, const int data)
@@ -116,6 +119,7 @@ void list_push_back(t_list *list, const int data)
 
 int list_pop_back(t_list *list)
 {
+	int back_data;
 	t_listnode *back;
 	t_listnode *node;
 
@@ -123,6 +127,7 @@ int list_pop_back(t_list *list)
 		return (-1);
 	back = list->tail;
 	node = list->head;
+	back_data = list->tail->data;
 	for (size_t i = 2; i < list->size; i++)
 		node = node->next;
 	node->next = NULL;
@@ -134,7 +139,8 @@ int list_pop_back(t_list *list)
 	}
 	else
 		list->tail = node;
-	return (back->data);
+	free(back);
+	return (back_data);
 }
 
 int list_front(const t_list *list)
@@ -187,14 +193,21 @@ void list_erase(t_list *list, const size_t index)
 	for (size_t i = 1; i < index; i++)
 		node = node->next;
 	if (index == 0)
+	{
 		list->head = node->next;
+		free(node);
+	}
 	else if (index == (list->size - 1))
 	{
 		list->tail = node;
+		free(node->next);
 		node->next = NULL;
 	}
 	else
+	{
+		free(node->next);
 		node->next = node->next->next;
+	}
 	list->size--;
 	if (list->size == 0)
 	{
@@ -269,6 +282,7 @@ void list_remove_value(t_list *list, const int data)
 		prev->next = NULL;
 	}
 	list->size--;
+	free(curr);
 }
 
 

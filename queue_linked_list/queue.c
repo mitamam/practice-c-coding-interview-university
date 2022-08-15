@@ -62,15 +62,18 @@ void queue_enqueue(t_queue *q, const int key)
 
 int queue_dequeue(t_queue *q)
 {
-	int front;
+	t_qnode *front;
+	int front_key;
 
 	if (!q || !q->head)
 		return (-1);
-	front = q->head->key;
+	front = q->head;
+	front_key = q->head->key;
 	q->head = q->head->next;
 	if (!q->head)
 		q->tail = NULL;
-	return (front);
+	free(front);
+	return (front_key);
 }
 
 t_bool queue_is_empty(const t_queue *q)
