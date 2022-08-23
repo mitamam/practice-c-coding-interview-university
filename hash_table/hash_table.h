@@ -4,9 +4,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define TABLE_SIZE 5
-
-
 typedef enum e_flag
 {
 	EMPTY,

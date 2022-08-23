@@ -1,6 +1,6 @@
 #include "hash_table.h"
 
-static int hash_table_hash(const char *key)
+static int hash_table_hash(const t_hash *h, const char *key)
 {
 	int b;
 	size_t dec;
@@ -10,7 +10,7 @@ static int hash_table_hash(const char *key)
 	// Rolling hash function
 	for (int i = 0; key[i] != '\0'; i++)
 		dec = dec + (b * key[i]);
-	return (dec % TABLE_SIZE);
+	return (dec % h->size);
 }
 
 static int hash_table_search(const t_hash *h, const char *key)
@@ -20,7 +20,7 @@ static int hash_table_search(const t_hash *h, const char *key)
 
 	if (!h || !key)
 		return (-1);
-	keyhash = hash_table_hash(key);
+	keyhash = hash_table_hash(h, key);
 	count = 0;
 	while (h->size > count && h->table[keyhash].key != key)
 	{
@@ -64,7 +64,7 @@ void hash_table_add(t_hash *h, char *key, const int value)
 
 	if (!h || !key)
 		return ;
-	keyhash = hash_table_hash(key);
+	keyhash = hash_table_hash(h, key);
 	count = 0;
 	while (h->size > count && h->table[keyhash].flag == OCCUPIED)
 	{
