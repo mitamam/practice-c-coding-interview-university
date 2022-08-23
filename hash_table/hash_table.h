@@ -34,14 +34,12 @@ typedef struct s_hash
 }				t_hash;
 
 t_hash *hash_table_create(const int size);
-int hash_table_hash(const char *key);
 void hash_table_add(t_hash *h, char *key, const int value);
 int hash_table_get(const t_hash *h, const char *key);
 t_bool hash_table_exists(const t_hash *h, const char *key);
 void hash_table_remove(t_hash *h, const char *key);
 void hash_table_destroy(t_hash *h);
 
-int hash_table_search(const t_hash *h, const char *key);
 void hash_table_debug(const t_hash *h);
 
 #endif /* HASH_TABLE_H */

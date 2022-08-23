@@ -1,9 +1,46 @@
 #include "hash_table.h"
 
+static int hash_table_hash(const char *key)
+{
+	int b;
+	size_t dec;
+
+	b = 31;
+	dec = 0;
+	// Rolling hash function
+	for (int i = 0; key[i] != '\0'; i++)
+		dec = dec + (b * key[i]);
+	return (dec % TABLE_SIZE);
+}
+
+static int hash_table_search(const t_hash *h, const char *key)
+{
+	int keyhash;
+	int count;
+
+	if (!h || !key)
+		return (-1);
+	keyhash = hash_table_hash(key);
+	count = 0;
+	while (h->size > count && h->table[keyhash].key != key)
+	{
+		if (keyhash == h->size - 1)
+			keyhash = 0;
+		else
+			keyhash += 1;
+		count++;
+	}
+	if (h->table[keyhash].key == key)
+		return (keyhash);
+	return (-1);
+}
+
 t_hash *hash_table_create(const int size)
 {
 	t_hash *h;
 
+	if (size <= 0)
+		return (NULL);
 	h = (t_hash *)malloc(sizeof(t_hash));
 	if (!h)
 		return (NULL);
@@ -18,19 +55,6 @@ t_hash *hash_table_create(const int size)
 		h->table[i].value = -1;
 	}
 	return (h);
-}
-
-int hash_table_hash(const char *key)
-{
-	int b;
-	size_t dec;
-
-	b = 31;
-	dec = 0;
-	// Rolling hash function
-	for (int i = 0; key[i] != '\0'; i++)
-		dec = dec + (b * key[i]);
-	return (dec % TABLE_SIZE);
 }
 
 void hash_table_add(t_hash *h, char *key, const int value)
@@ -106,28 +130,6 @@ void hash_table_destroy(t_hash *h)
 			free(h->table);
 		free(h);
 	}
-}
-
-int hash_table_search(const t_hash *h, const char *key)
-{
-	int keyhash;
-	int count;
-
-	if (!h || !key)
-		return (-1);
-	keyhash = hash_table_hash(key);
-	count = 0;
-	while (h->size > count && h->table[keyhash].key != key)
-	{
-		if (keyhash == h->size - 1)
-			keyhash = 0;
-		else
-			keyhash += 1;
-		count++;
-	}
-	if (h->table[keyhash].key == key)
-		return (keyhash);
-	return (-1);
 }
 
 void hash_table_debug(const t_hash *h)
